@@ -9,7 +9,6 @@ import os
 
 lcd = CharLCD('PCF8574', 0x3F, cols=16, rows=2)
 
-current_time = datetime.now(ZoneInfo("Australia/Adelaide")).strftime('%I:%M %p')
 
 lcd.write_string("loading.")
 sleep(1)
@@ -38,6 +37,7 @@ async def main() -> None:
         return weather.temperature
 
 while True:
+    current_time = datetime.now(ZoneInfo("Australia/Adelaide")).strftime('%I:%M %p')
     lcd.clear()
     lcd.write_string(f"CPU Temp:{cpu.temperature:.2f}\x00C")
     lcd.cursor_pos = (1, 0)
